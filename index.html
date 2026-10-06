@@ -311,39 +311,40 @@
                 font-size: 26px;
             }
         }
-       @media (max-width: 768px) {
-  /* Запрещаем странице прокручиваться по горизонтали */
+      @media (max-width: 768px) {
+  /* Фиксируем ширину всех элементов в пределах экрана */
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+    max-width: 100vw !important;
+  }
+
   html, body {
     overflow-x: hidden !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 10px !important;
   }
 
-  /* Заставляем все блоки подстраиваться под ширину экрана с безопасными отступами */
-  *, *:before, *:after {
-    box-sizing: border-box !important;
+  /* Автоматически уменьшаем ВСЕ заголовки и крупные тексты */
+  h1, h2, h3, h4, [class*="title"], [class*="heading"] {
+    font-size: 20px !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
   }
 
-  /* Адаптируем крупный текст внизу, чтобы он перенослися на новые строки */
-  p, h1, h2, h3, div {
-    max-width: 100% !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
+  /* Корректируем обычные абзацы и блоки с текстом */
+  p, span, div {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
   }
 
-  /* Настройки для самого нижнего блока с текстом */
-  .text-section, p {
-    font-size: 15px !important;
-    line-height: 1.5 !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-
-  /* Карточки матового стекла */
-  .card, [class*="card"] {
-    width: calc(100% - 30px) !important; /* Автоматический отступ по 15px с боков */
-    margin: 0 auto 15px auto !important;
+  /* Все блоки и карточки выстраиваем в одну колонку */
+  section, main, article, div {
+    flex-direction: column !important;
+    width: 100% !important;
   }
 }
     </style>
