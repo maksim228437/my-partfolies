@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breath Natural</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            width: 100%;
+            background-image: url('photo_2026-09-24_21-19-47.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            padding: 10px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .main-wrapper {
+            padding: 60px 0 0 60px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-content {
+            max-width: 550px;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1 {
+            font-size: 65px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.25) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .play-button {
+            border-radius: 50% !important;
+            width: 50px !important;
+            height: 50px !important;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 30px;
+            margin-top: 80px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card {
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 25px;
+            width: 450px;
+            max-width: 100%;
+            max-height: 900px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-card.wide {
+            width: 750px;
+            max-width: 100%;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.1);
+        }
+
+        .stars {
+            font-size: 24px;
+            color: #ffd700;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .card-title {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #b2dfdb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 1200px) {
+            .cards-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .glass-card, .glass-card.wide {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                background-attachment: scroll;
+            }
+
+            .main-wrapper {
+                padding: 20px 10px 0 10px;
+            }
+
+            h1 {
+                font-size: 40px !important;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .play-button {
+                width: 50px !important;
+            }
+
+            .cards-container {
+                margin-top: 40px;
+            }
+
+            .glass-card {
+                padding: 25px;
+            }
+
+            .card-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="header-content">
+            <h1>естественное дыхание</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="button-group">
+                <button>Learn More</button>
+                <button class="play-button">▶</button>
+            </div>
+        </div>
+
+        <div class="cards-container">
+            <div class="glass-card">
+                <div class="review-header">
+                    <img src="https://img.magnific.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80" alt="User Avatar" class="avatar">
+                    <div class="stars">★★★★★</div>
+                </div>
+                <p style="margin-bottom: 0;">Естественное дыхание» — это живая природа и глоток свежего воздуха в вашем доме. Растения не только украшают интерьер, но и мягко очищают атмосферу, наполняя пространство гармонией. Зелёный цвет успокаивает и дарит энергию — идеальный выбор для заботы о себе.</p>
+            </div>
+
+            <div style="margin-top: 50px;" class="glass-card wide">
+                <h2 class="card-title">природа</h2>
+                <p style="margin-bottom: 0;">это весь материальный мир Вселенной, включающий в себя всё естественное окружение, которое не было создано человеком. Она объединяет как живые организмы (растения, животных, бактерии), так и неживые объекты — от минералов и воды до атмосферы и космических тел.</p>
+            </div>
+
+            <div class="glass-card">
+                <svg width="150" height="170" viewBox="0 0 180 200" style="display: block; margin: 0 auto 20px; filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Pot -->
+                    <path d="M 60 140 L 50 190 L 130 190 L 120 140 Z" fill="#e8e8e8" stroke="#b8b8b8" stroke-width="2"/>
+                    <ellipse cx="90" cy="140" rx="30" ry="8" fill="#f5f5f5" stroke="#b8b8b8" stroke-width="2"/>
+                    
+                    <!-- Soil -->
+                    <ellipse cx="90" cy="140" rx="28" ry="6" fill="#6b4423"/>
+                    
+                    <!-- Stems -->
+                    <path d="M 90 140 Q 85 120 80 90" stroke="#2d5016" stroke-width="3" fill="none"/>
+                    <path d="M 90 140 Q 90 115 90 80" stroke="#2d5016" stroke-width="3" fill="none"/>
+                    <path d="M 90 140 Q 95 120 100 90" stroke="#2d5016" stroke-width="3" fill="none"/>
+                    <path d="M 90 140 Q 100 125 110 95" stroke="#2d5016" stroke-width="2.5" fill="none"/>
+                    <path d="M 90 140 Q 80 125 70 95" stroke="#2d5016" stroke-width="2.5" fill="none"/>
+                    
+                    <!-- Leaves -->
+                    <ellipse cx="75" cy="85" rx="18" ry="28" fill="#4a7c3c" transform="rotate(-25 75 85)"/>
+                    <ellipse cx="105" cy="85" rx="18" ry="28" fill="#5a9048" transform="rotate(25 105 85)"/>
+                    <ellipse cx="85" cy="70" rx="16" ry="26" fill="#4a7c3c" transform="rotate(-15 85 70)"/>
+                    <ellipse cx="95" cy="70" rx="16" ry="26" fill="#5a9048" transform="rotate(15 95 70)"/>
+                    <ellipse cx="65" cy="95" rx="15" ry="24" fill="#3d6b31" transform="rotate(-35 65 95)"/>
+                    <ellipse cx="115" cy="95" rx="15" ry="24" fill="#5a9048" transform="rotate(35 115 95)"/>
+                    
+                    <!-- Center leaves -->
+                    <ellipse cx="90" cy="60" rx="17" ry="27" fill="#5a9048"/>
+                    <ellipse cx="82" cy="55" rx="14" ry="23" fill="#4a7c3c" transform="rotate(-20 82 55)"/>
+                    <ellipse cx="98" cy="55" rx="14" ry="23" fill="#5a9048" transform="rotate(20 98 55)"/>
+                    
+                    <!-- White flowers -->
+                    <g transform="translate(80, 45)">
+                        <circle cx="0" cy="0" r="4" fill="white"/>
+                        <circle cx="-3" cy="-3" r="3.5" fill="white"/>
+                        <circle cx="3" cy="-3" r="3.5" fill="white"/>
+                        <circle cx="-3" cy="3" r="3.5" fill="white"/>
+                        <circle cx="3" cy="3" r="3.5" fill="white"/>
+                        <circle cx="0" cy="0" r="2" fill="#ffe44d"/>
+                    </g>
+                    <g transform="translate(100, 50)">
+                        <circle cx="0" cy="0" r="4" fill="white"/>
+                        <circle cx="-3" cy="-3" r="3.5" fill="white"/>
+                        <circle cx="3" cy="-3" r="3.5" fill="white"/>
+                        <circle cx="-3" cy="3" r="3.5" fill="white"/>
+                        <circle cx="3" cy="3" r="3.5" fill="white"/>
+                        <circle cx="0" cy="0" r="2" fill="#ffe44d"/>
+                    </g>
+                    <g transform="translate(90, 35)">
+                        <circle cx="0" cy="0" r="4.5" fill="white"/>
+                        <circle cx="-3.5" cy="-3.5" r="4" fill="white"/>
+                        <circle cx="3.5" cy="-3.5" r="4" fill="white"/>
+                        <circle cx="-3.5" cy="3.5" r="4" fill="white"/>
+                        <circle cx="3.5" cy="3.5" r="4" fill="white"/>
+                        <circle cx="0" cy="0" r="2.5" fill="#ffe44d"/>
+                    </g>
+                </svg>
+                <p style="margin-bottom: 0;">Комнатные растения — естественные очистители воздуха. Они поглощают углекислый газ и выделяют кислород, создавая здоровую атмосферу в доме. Один цветок способен улучшить качество воздуха и подарить ощущение связи с природой.</p>
+            </div>
+        </div>
+    </div>
+        <p style=" margin-top: 50px; font-size: 25px;width: 800px;margin-left: 70px; ">Защита природы — это сохранение основы жизни на Земле, без которой человечество просто не сможет существовать. Это не просто забота об экологии, а обеспечение нашей собственной безопасности, здоровья и будущего.</p>
+</body>
+</html>
