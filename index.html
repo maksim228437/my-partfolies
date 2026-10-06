@@ -311,129 +311,41 @@
                 font-size: 26px;
             }
         }
-        @media (max-width: 1200px) {
-    .cards-container {
-        flex-direction: column;
-        gap: 25px;
-    }
+       @media (max-width: 768px) {
+  /* Запрещаем странице прокручиваться по горизонтали */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
-    .glass-card, .glass-card.wide {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
+  /* Заставляем все блоки подстраиваться под ширину экрана с безопасными отступами */
+  *, *:before, *:after {
+    box-sizing: border-box !important;
+  }
 
-    h1 {
-        font-size: 50px;
-    }
+  /* Адаптируем крупный текст внизу, чтобы он перенослися на новые строки */
+  p, h1, h2, h3, div {
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Настройки для самого нижнего блока с текстом */
+  .text-section, p {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Карточки матового стекла */
+  .card, [class*="card"] {
+    width: calc(100% - 30px) !important; /* Автоматический отступ по 15px с боков */
+    margin: 0 auto 15px auto !important;
+  }
 }
-
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-        background-attachment: scroll;
-    }
-
-    .main-wrapper {
-        padding: 30px 15px 0 15px;
-    }
-
-    h1 {
-        font-size: 36px !important;
-        line-height: 1.2;
-    }
-
-    p {
-        font-size: 15px;
-        line-height: 1.6;
-    }
-
-    .button-group {
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    button {
-        padding: 12px 24px;
-        font-size: 14px;
-    }
-
-    .play-button {
-        width: 45px !important;
-        height: 45px !important;
-        padding: 0 !important;
-    }
-
-    .cards-container {
-        margin-top: 30px;
-        gap: 20px;
-    }
-
-    .glass-card {
-        padding: 20px;
-        width: 100% !important;
-    }
-
-    .glass-card.wide {
-        padding: 20px;
-    }
-
-    .card-title {
-        font-size: 24px;
-    }
-
-    .avatar {
-        width: 40px;
-        height: 40px;
-    }
-
-    .stars {
-        font-size: 20px;
-    }
-
-    .review-header {
-        margin-bottom: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-wrapper {
-        padding: 20px 10px 0 10px;
-    }
-
-    h1 {
-        font-size: 28px !important;
-    }
-
-    p {
-        font-size: 14px;
-    }
-
-    button {
-        padding: 10px 20px;
-        font-size: 13px;
-    }
-
-    .play-button {
-        width: 40px !important;
-        height: 40px !important;
-    }
-
-    .glass-card {
-        padding: 18px;
-    }
-
-    .card-title {
-        font-size: 20px;
-    }
-
-    svg {
-        width: 120px !important;
-        height: auto !important;
-    }
-}
-
     </style>
 </head>
 <body>
